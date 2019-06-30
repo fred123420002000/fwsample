@@ -3,6 +3,11 @@
 # 沒有任何實際功能的一些文件
 各種框架的上課筆記，記錄一些前置宣告、連結、使用方式、設定細節
 
+* 常見教學網站
+	* 菜鳥教程
+	* w3school
+	* struts2 spring hibernate API
+
 * hibernate
 	* hibernate_cfg_xml 資料庫Driver位址名稱密碼以及.hbm.xml的匹配設定
 	* hibernate_MODEL_java 無關連情況下的資料表Model
@@ -16,7 +21,7 @@
 	* spring_MODEL_java 一般模式
 	* spring_xml 使用bean的id class建構式參數、初始值設定
 	* use_spring_java 使用getBean的範例
-* struts
+* struts2
 	* action 對應的頁面訊息處裡
 	* struts_xml 對應的頁面轉換
 	* web_xml 需要的過濾器類別與頁面指定
