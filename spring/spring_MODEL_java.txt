@@ -1,0 +1,40 @@
+//屬性需設為private並對應資料庫欄位
+//需要有對應的set get方法
+//盡可能使用類別例如:Integer
+//不使用基本型別例如:int
+//建構式必需設為public才能使用
+//建構式參數的有無自由
+//若與hibernate共用，則需要有無參數建構式存在
+
+package com.dao;
+
+import java.util.List;
+import java.util.Map;
+
+public class student {
+    private Integer id;
+    private String name;
+    private List<String> dream;
+    private Map<String, Integer> score;
+    private boolean graduation;
+                                                                                                                                                                           
+    public student() {
+                                                                                                                                                                           
+    }
+                                                                                                                                                                           
+    public student(Integer id, String name, List<String> dream,
+            Map<String, Integer> score, boolean graduation) {
+        this.id = id;
+        this.name = name;
+        this.dream = dream;
+        this.score = score;
+        this.graduation = graduation;
+    }
+                                                                                                                                                                           
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", dream=" + dream
+                + ", score=" + score + ", graduation=" + graduation + "]";
+    }
+                                                                                                                                                                           
+}

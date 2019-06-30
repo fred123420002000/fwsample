@@ -1,0 +1,35 @@
+////////////////////////////////////////////////////////////////////////
+//無法new的介面
+package com.tack;
+
+import com.model.res;
+
+public interface tack {
+	int tack(res res);
+}
+
+////////////////////////////////////////////////////////////////////////
+//實作該介面的類別
+package com.tack;
+
+import com.model.res;
+
+public class out implements tack {
+	@Override
+	public int tack(res res) {
+		return (int)(res.getSum()*0.95);
+	}
+}
+
+////////////////////////////////////////////////////////////////////////
+//工廠方法
+package com.tack;
+
+public class factory {
+	
+	public static tack get() {
+		return new com.tack.out();
+	}
+}
+////////////////////////////////////////////////////////////////////////
+//在spring中需要這樣設定的類別，實作介面的類別本身建構式一般已經被private鎖住

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!-- 
+指定Driver url username password 
+
+當資料庫需要儲存中文
+1.表本身要設定為utf8編碼
+2.網址要加上 "?useUnicode=true&characterEncoding=UTF-8"
+	但是xml檔案中無法直接使用&要改用&amp;
+	範例如下
+	jdbc:mysql://localhost:3306/restaurant?useUnicode=true&amp;characterEncoding=UTF-8
+3.而傳遞資料的jsp頁面也需設定response.setCharacterEncoding("UTF-8");
+-->
+
+<hibernate-configuration>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+  <property name="hibernate.connection.password">1234</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/restaurant</property>
+  <property name="hibernate.connection.username">root</property>
+  <mapping resource="com/model/res.hbm.xml"/>
+ </session-factory>
+</hibernate-configuration>

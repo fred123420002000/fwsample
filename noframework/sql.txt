@@ -1,0 +1,141 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.model.res;
+//不使用框架的資料庫存取
+public class queryby {
+	
+	public static void add() {
+		String url="jdbc:mysql://localhost:3306/restaurant";
+		String user="root";
+		String password="1234";
+		String sql="insert into res(name,product1,product2,product3,memory,sum,orderdate) values(?,?,?,?,?,?,?)";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn=DriverManager.getConnection(url, user, password);		
+			PreparedStatement ps=conn.prepareStatement(sql);
+			res res=new res(234);
+			ps.setString(1, res.getName());
+			ps.setInt(2, res.getProduct1());
+			ps.setInt(3, res.getProduct2());
+			ps.setInt(4, res.getProduct3());
+			ps.setString(5, res.getMemory());
+			ps.setInt(6, res.getSum());
+			ps.setString(7, res.getOrderdate());
+			ps.executeUpdate();
+			//System.out.println(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	public static ResultSet queryby(Integer id,String name,String memory,Integer sum) {		
+		ResultSet rs=null;
+		String url="jdbc:mysql://localhost:3306/restaurant";
+		String user="root";
+		String password="1234";
+		String sql="select * from res where id>=1";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn=DriverManager.getConnection(url, user, password);	
+			Statement st=conn.createStatement();
+			
+			if(!(id==null||id.equals(0)))sql=sql+" and id="+id;
+			if(!(name==null||name.equals("")))sql=sql+" and name='"+name+"'";
+			if(!(memory==null||memory.equals("")))sql=sql+" and memory='"+memory+"'";
+			if(!(sum==null||sum.equals(0)))sql=sql+" and sum>="+sum;
+
+			System.out.println(sql);
+			rs=st.executeQuery((sql));		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}	
+
+	public static ResultSet queryby(Integer id) {		
+		ResultSet rs=null;
+		String url="jdbc:mysql://localhost:3306/restaurant";
+		String user="root";
+		String password="1234";
+		String sql="select * from res where id>=?";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn=DriverManager.getConnection(url, user, password);	
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs=ps.executeQuery();	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}		
+		return rs;
+	}	
+
+	public static void delete() {
+		String url="jdbc:mysql://localhost:3306/restaurant";
+		String user="root";
+		String password="1234";
+		String sql="delete from res where id=3";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn=DriverManager.getConnection(url, user, password);		
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}	
+	}
+	public static void update() {
+		String url="jdbc:mysql://localhost:3306/restaurant";
+		String user="root";
+		String password="1234";
+		String sql="update res set name=?,product1=?,product2=?,product3=?,memory=?,sum=?,orderdate=? where id=3";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn=DriverManager.getConnection(url, user, password);		
+			PreparedStatement ps=conn.prepareStatement(sql);
+			res res=new res(234);
+			ps.setString(1, res.getName());
+			ps.setInt(2, res.getProduct1());
+			ps.setInt(3, res.getProduct2());
+			ps.setInt(4, res.getProduct3());
+			ps.setString(5, res.getMemory());
+			ps.setInt(6, res.getSum());
+			ps.setString(7, res.getOrderdate());
+			ps.executeUpdate();
+			//System.out.println(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}	
+		
+	}
+	public static void main(String[] args) throws Throwable {
+		
+		ResultSet rs=queryby(0,"","",2);
+		
+		while(rs.next()){
+			for(int i=1;i<=8;i++) {
+				System.out.print(rs.getObject(i)+"\t");
+			}
+			System.out.println();
+		}
+		//queryby.add();
+		//queryby.update();
+		//queryby.delete();
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.dao;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.model.login;
+
+public class test001 {
+
+	public static void main(String[] args) throws Throwable {
+//使用在最表層(src為基準)或有路徑的xml
+		ApplicationContext c=new ClassPathXmlApplicationContext("spring.xml");
+		ApplicationContext c2=new ClassPathXmlApplicationContext("com/dao/spring2.xml");
+//強制轉型的getBean
+		login l=(login)c.getBean("login");
+		System.out.println(l.getName()+"\t"+l.getPassword());
+		l=(login)c2.getBean("login");
+		System.out.println(l.getName()+"\t"+l.getPassword());
+		
+//直接指定類型的getBean
+		student st=c.getBean("student",student.class);
+		System.out.println(st);
+	}
+}

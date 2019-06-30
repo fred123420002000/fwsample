@@ -1,0 +1,14 @@
+//設定編碼
+request.setCharacterEncoding("UTF-8");
+response.setCharacterEncoding("UTF-8");
+
+//使用session
+HttpSession session=request.getSession();
+session.getAttribute("ABC");
+
+//跳至其他頁面
+response.sendRedirect("https://www.google.com/");
+
+//在畫面顯示文字，也可以進行HTML設計，雖然一般不會在這自找麻煩
+PrintWriter out=response.getWriter();
+out.println("Hello World!");

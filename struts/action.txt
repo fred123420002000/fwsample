@@ -1,0 +1,31 @@
+
+
+//如果要使用ActionContext呼叫session需要這個類別
+import com.opensymphony.xwork2.ActionContext;
+//管理頁面要繼承的類別
+import com.opensymphony.xwork2.ActionSupport;
+//使用request呼叫session需要這個類別
+import javax.servlet.http.HttpServletRequest;
+
+public class XXXAction extends ActionSupport{
+//由來源頁面傳遞的變數要在這裡宣告並建立get/set
+	private String name;
+	private String password;
+	
+//需要複寫的方法
+	public String execute() throws Exception
+	{
+		if(name.equals(""))return ERROR;
+
+		String m=name+password;
+		//使用ActionContextc獲得session			
+		ActionContext.getContext().getSession().put("M", m);
+		return SUCCESS;
+
+		/*
+		使用request操作session
+		HttpServletRequest  request=ServletActionContext.getRequest(); 
+		request.getSession().setAttribute("P", p);
+		*/
+	}
+}

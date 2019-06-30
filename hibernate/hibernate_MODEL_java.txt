@@ -1,0 +1,16 @@
+
+
+public class XXX {
+
+//屬性需設為private並對應資料庫欄位
+//需要有對應的set get方法
+//盡可能使用類別例如:Integer
+//不使用基本型別例如:int
+	private int id;
+	private String name="";
+	private int product1;
+//建構式必須設為public才能使用
+//必須存在無參數建構式
+	public XXX() {		
+	}
+}
