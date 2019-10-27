@@ -1,0 +1,31 @@
+package other;
+
+import java.util.ArrayDeque;
+
+public class card13 {
+
+	/*
+	 * 1.2.3.4.5.6.7.8.9.10.11.12.13
+	 * 
+	 * 1.12.2.8.3.11.4.9.5.13.6.10.7
+	 */
+	public static String[] x01 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" };
+	public static ArrayDeque<String> input = new ArrayDeque<>(0);
+
+	public static void main(String[] args) {
+		for (int i = 0; i < x01.length; i++)input.add(x01[i]);
+		ArrayDeque<Integer> ans = new ArrayDeque<>(0);
+		tack(ans, input);
+		System.out.print(ans);
+	}
+
+	public static void tack(ArrayDeque ans, ArrayDeque input) {
+		for (;;) {
+			ans.addFirst(input.getLast());
+			input.removeLast();
+			if (input.isEmpty())return;
+			ans.addFirst(ans.getLast());
+			ans.removeLast();
+		}
+	}
+}
